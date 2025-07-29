@@ -1,0 +1,37 @@
+npm init -y
+npm install bcrypt cloudinary cookie-parser cors dotenv express jsonwebtoken mongodb mongoose mongoose-aggregate-paginate-v2 multer
+npm install -D nodemon prettier
+
+
+my-project/
+│
+├── client/                 # React frontend app
+│   ├── public/
+│   ├── src/
+│   │   ├── components/     # Reusable components
+│   │   ├── pages/          # Auth, Home, Todo, etc.
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── ...
+│   ├── .env                # FRONTEND: VITE_API_URL or REACT_APP_API_URL
+│   ├── package.json
+│   └── vite.config.js      # or react-scripts config
+│
+├── server/                 # Express backend
+│   ├── controllers/        # Logic for each route
+│   │   └── auth.controller.js
+│   ├── middleware/         # Middleware (auth, error handling)
+│   │   └── auth.middleware.js
+│   ├── models/             # Mongoose models
+│   │   └── user.model.js
+│   ├── routes/             # Route definitions
+│   │   └── auth.routes.js
+│   ├── uploads/            # Multer uploads
+│   ├── .env                # BACKEND: Mongo URI, JWT, etc.
+│   ├── server.js           # Entry point
+│   ├── package.json
+│   └── config/             # MongoDB connection setup
+│       └── db.js
+│
+├── README.md
+└── .gitignore

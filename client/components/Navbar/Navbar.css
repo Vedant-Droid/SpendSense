@@ -1,0 +1,51 @@
+.navbar-container {
+  border-radius: 20px;
+  width: fit-content;
+  height: 100%;
+  background: #1f2a44; /* Dark bluish background */
+  padding: 20px 10px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.sidebar {
+  border-radius: 20px;
+  background-color: #2e3c57; /* Slightly lighter dark blue */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.logo {
+  color: #3b82f6; /* Bright blue accent */
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Links */
+.sidebar a {
+  color: #e2e8f0; /* Light text */
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  transition: background 0.3s ease, color 0.3s ease;
+  font-weight: 500;
+}
+
+.sidebar a:hover {
+  background-color: #475569; /* Soft hover effect */
+  color: #ffffff;
+}
+
+.active-link {
+  background-color: #3b82f6; /* Accent color */
+  color: #fff;
+  font-weight: bold;
+}

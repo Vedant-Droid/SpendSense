@@ -1,0 +1,101 @@
+🏠 1. Dashboard / Landing Page
+🔹 Purpose:
+Give a quick overview of financial status
+
+🔹 UI Components:
+Component	Description
+Summary Cards	Show totals: Total Income, Total Spent, Balance, etc.
+Chart (Pie/Bar)	Visualize category-wise spending or monthly trends
+Recent Transactions	List of last 5–10 expenses added
+Quick Add	A mini form to instantly add an expense
+
+➕ 2. Add Expense Page
+🔹 Purpose:
+Manually input an expense
+
+🔹 UI Fields:
+Field	Type	Notes
+Title	Text	e.g. "Lunch at Subway"
+Amount	Number	₹ or $
+Category	Dropdown	Food, Transport, Bills, Others, etc.
+Paid/Spent	Toggle	Boolean to separate income/expense
+Date & Time	Auto/Manual	Autofilled, but editable if needed
+Submit Button	Action	Calls POST API to store in MongoDB
+
+📄 3. Logs / Expense History Page
+🔹 Purpose:
+Display all expenses in detail
+
+🔹 UI:
+Element	Description
+Filter Options	Filter by category, date range, paid/spent
+Search Bar	Search for any expense by title
+Sort Options	Sort by date, amount, or category
+Expense Cards	Each shows title, amount, category, date/time, and edit/delete btns
+
+📊 4. Charts Page
+🔹 Purpose:
+Visualize financial habits
+
+🔹 UI Charts:
+Chart Type	Use
+Pie Chart	Percentage spending by category
+Line/Bar Chart	Monthly trends of income vs expense
+Donut Chart	Paid vs Spent ratio
+
+Libraries to use: Recharts, Chart.js, or Victory
+
+👤 5. Profile Page
+🔹 Purpose:
+Display user info & allow logout
+
+🔹 UI:
+Component	Description
+Email	Show registered email
+Change Pw	Optional (future scope)
+Logout Button	Deletes token and redirects to login
+
+🍔 6. Navbar (Static or Slide-In)
+🔹 Links to:
+Dashboard
+
+Add Expense
+
+Logs
+
+Charts
+
+Profile
+
+Logout
+
+🔹 Features:
+Highlight current tab
+
+Hamburger menu (for mobile)
+
+Optional blur or modern animation
+
+✅ Optional Features for Uniqueness:
+Budget Goal Tracker: Set monthly limits
+
+Reminders: Notify if daily spending exceeds average
+
+Export as CSV/PDF
+
+Dark Mode Toggle
+
+AI Insights: "You're spending too much on Swiggy 🍔"
+
+🖼 Example UI Layout (Desktop)
+less
+Copy
+Edit
+----------------------------------------------------
+| Sidebar       |       Main Content (Dashboard)   |
+| Dashboard     |  [Summary Cards] [Charts]        |
+| Add Expense   |  [Recent Expenses List]          |
+| Logs          |                                  |
+| Charts        |                                  |
+| Profile       |                                  |
+----------------------------------------------------

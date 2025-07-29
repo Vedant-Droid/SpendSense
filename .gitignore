@@ -1,0 +1,34 @@
+# === Node Modules ===
+client/node_modules/
+server/node_modules/
+
+# === Environment Variables ===
+server/.env
+client/.env
+
+# === Logs ===
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# === OS / Editor Files ===
+.DS_Store
+Thumbs.db
+
+# === Build Output ===
+client/dist/
+client/.vite/
+
+# === IDEs and Tools ===
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# === Optional: Dependency Lock Files ===
+# Uncomment if you don't want lock files (not recommended for teams)
+# client/package-lock.json
+# server/package-lock.json
