@@ -316,27 +316,32 @@ export default function Dashboard() {
             <div className="RecentExpenseLogsBarGraphs">
               <div className="RecentExpenseLogs">
                 <h2>Recent Expenses</h2>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Title</th>
-                      <th>Category</th>
-                      <th>Date / Time</th>
-                      <th>Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {expenses.map((log) => (
-                      <tr key={log._id}>
-                        <td>{log.title}</td>
-                        <td>{log.category}</td>
-                        <td>{formatDateTime(log.createdAt)}</td>
-                        <td>₹{log.amount}</td>
+                {expenses.length !== 0 ? (
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Date / Time</th>
+                        <th>Amount</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {expenses.map((log) => (
+                        <tr key={log._id}>
+                          <td>{log.title}</td>
+                          <td>{log.category}</td>
+                          <td>{formatDateTime(log.createdAt)}</td>
+                          <td>₹{log.amount}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                ) : (
+                  <h2>Start Adding Expenses!!</h2>
+                )}
               </div>
+
               <div className="BarGraph">
                 <h2>Financial Insights</h2>
                 <ResponsiveContainer width="100%" height={300}>

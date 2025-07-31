@@ -75,6 +75,7 @@ function Profile({setIsLoggedIn}){
         body:JSON.stringify({newUsername})
       })
       if(response.ok){
+        setUserName(newUsername)
         console.log("username has been changes successfully")
       }
     } catch (error) {
