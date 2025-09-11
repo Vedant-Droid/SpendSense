@@ -224,10 +224,11 @@ router.post("/insights", async (req, res) => {
       .join("\n");
 
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-
+    console.log(formattedExpenses)
     const prompt = `
     You are an expert financial advisor. Analyze the following expense logs and give smart financial insights.
-
+    Also analyze the date of spent and then analyze the trend and frequency of repetaive spents for that particular category.
+    the date is in format of dd/mm/yyy
     ${formattedExpenses}
     dont cross the limit of 40 words.
     Make it interesting to read.
