@@ -39,6 +39,7 @@ export default function Dashboard() {
   const [data, setData] = useState([]);
   const [expenses, setExpenses] = useState([]);
   const [insight, setInsight] = useState("Alright AI, JUDGE ME.");
+  const [welcomeMessage, setWelcomeMessage] = useState("");
 
   const formatDateTime = (isoString) => {
     const dateObj = new Date(isoString);
@@ -165,6 +166,25 @@ export default function Dashboard() {
       console.error("Error fetching insights:", error);
     }
   };
+  const WelcomeMessage = () => {
+  const messages = [
+    "Back to budgeting!",
+    "Money check time!",
+    "Spending smart today?",
+    "Your wallet missed you",
+    "Back on track",
+    "Time to track & save",
+    "Numbers don't lie",
+    "Welcome back, money master",
+    "Budget mode: ON",
+    "Let's crunch some cash"
+  ];
+
+  
+  const randomIndex = Math.floor(Math.random() * messages.length);
+  setWelcomeMessage(messages[randomIndex]);
+  
+};
 
 
   useEffect(() => {
@@ -173,6 +193,7 @@ export default function Dashboard() {
     fetchTotalSpent();
     fetchCategorySummary();
     fetchExpenses();
+    WelcomeMessage();
   }, []);
 
   return (
@@ -189,10 +210,10 @@ export default function Dashboard() {
                 
                 <div className="HiUsernameAddExpense">
                   <div className="HiUsernameAvgSpent">
-                    <div className="HiUsername">Hey {userName}!,</div>
+                    <div className="HiUsername">Hey {userName}!</div>
                     <div className="AvgSpent">
                       {/* Avg Daily Spend : ₹{avgSpentPerDay} Broken Probably */}
-                      Welcome Back UwU
+                      {welcomeMessage}
                     </div>
                   </div>
                   <div className="AddExpense">
