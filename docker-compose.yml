@@ -1,0 +1,20 @@
+services:
+  frontend:
+    build: ./client
+    ports: 
+      - 5137:5137
+  backend: 
+    build: ./server
+    ports:
+      - 5000:5000
+    environment:
+      DB_URL: mongodb://db/spendsense
+  database:
+    image: mongo:4.0-xenial 
+    ports:
+      - 27017:27017
+    volumes:
+      - spendsense:/data/db
+
+volumes:
+  spendsense:
