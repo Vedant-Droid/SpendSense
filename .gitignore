@@ -27,7 +27,7 @@ client/.vite/
 *.ntvs*
 *.njsproj
 *.sln
-
+vars.txt
 # === Optional: Dependency Lock Files ===
 # Uncomment if you don't want lock files (not recommended for teams)
 # client/package-lock.json

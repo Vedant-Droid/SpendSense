@@ -1,33 +1,32 @@
 name: SpendSense CI/CD
 
-# 1. Trigger: Run this whenever code is pushed to the 'main' branch
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
-  # Job 1: Verify the Backend
-  build-backend:
+  build-and-push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Build Backend Docker Image
-        run: |
-          cd server
-          docker build -t spendsense-backend:latest .
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-  # Job 2: Verify the Frontend
-  build-frontend:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Build and Push Backend
+        uses: docker/build-push-action@v5
+        with:
+          context: ./server
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/spendsense-backend:latest
 
-      - name: Build Frontend Docker Image
-        run: |
-          cd client
-          docker build -t spendsense-frontend:latest .
+      - name: Build and Push Frontend
+        uses: docker/build-push-action@v5
+        with:
+          context: ./client
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/spendsense-frontend:latest
