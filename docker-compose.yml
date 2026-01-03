@@ -2,17 +2,24 @@ services:
   frontend:
     build: ./client
     ports: 
-      - 5137:5137
+      - "5173:5173"  
+    env_file:
+      - ./client/.env
   backend: 
     build: ./server
     ports:
-      - 5000:5000
-    environment:
-      DB_URL: mongodb://db/spendsense
+      - "5000:5000"
+    env_file:        
+      - ./server/.env
+    # environment:
+    #   - mongo_uri=${mongo_uri} 
+    depends_on:
+      - database
+
   database:
     image: mongo:4.0-xenial 
     ports:
-      - 27017:27017
+      - "27017:27017"
     volumes:
       - spendsense:/data/db
 

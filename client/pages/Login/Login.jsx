@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom"; 
 import './Login.css';
 
+const baseUrl = import.meta.env.VITE_BASE_URL
 function Login({setIsLoggedIn}){
   const [email,setEmail]=useState("");
   const [password,setPassword]=useState("");
@@ -24,7 +25,7 @@ function Login({setIsLoggedIn}){
     try {
       let endpoint=hasAccount?"/auth/login":"/auth/register"
       
-      const response = await fetch(endpoint, {
+      const response = await fetch(`${baseUrl}`+endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
