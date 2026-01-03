@@ -1,0 +1,33 @@
+name: SpendSense CI/CD
+
+# 1. Trigger: Run this whenever code is pushed to the 'main' branch
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  # Job 1: Verify the Backend
+  build-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Backend Docker Image
+        run: |
+          cd server
+          docker build -t spendsense-backend:latest .
+
+  # Job 2: Verify the Frontend
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Frontend Docker Image
+        run: |
+          cd client
+          docker build -t spendsense-frontend:latest .
