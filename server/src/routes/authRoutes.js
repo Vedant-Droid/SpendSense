@@ -31,7 +31,9 @@ router.post("/register", async (req, res) => {
         );
         const options = {
             httpOnly: true,
-            secure: true
+            sameSite: 'none', 
+            secure: true,      
+            maxAge: 24 * 60 * 60 * 1000
         }
         console.log("cookie sent")
         return res
@@ -74,7 +76,9 @@ router.post("/login",async(req,res)=>{
             );
         const options = {
             httpOnly: true,
-            secure: true
+            sameSite: 'none', 
+            secure: true,      
+            maxAge: 24 * 60 * 60 * 1000
         }
         // console.log("user logged in successfully via login")
         // console.log("cookie sent during login")
