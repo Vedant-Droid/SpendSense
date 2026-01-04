@@ -8,7 +8,7 @@ import userRoutes from "./routes/userRoutes.js"
 import authRoutes from "./routes/authRoutes.js"
 
 const app = express()
-app.set('trust proxy', 1); // trust first proxy
+app.set('trust proxy', 1);
 app.use(express.json())
 app.use(cookieParser());
 dotenv.config();

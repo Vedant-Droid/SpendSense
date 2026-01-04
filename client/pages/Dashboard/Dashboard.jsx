@@ -57,6 +57,7 @@ export default function Dashboard() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(newExpense),
       });
 
@@ -137,7 +138,10 @@ export default function Dashboard() {
 
   const fetchExpenses = async () => {
     try {
-      const response = await fetch(`${baseUrl}/user/recentLogs`);
+      const response = await fetch(`${baseUrl}/user/recentLogs`,{
+        method: "GET",
+        credentials: "include",
+      });
       if (!response.ok) {
         throw new Error("Failed to fetch expenses");
       }

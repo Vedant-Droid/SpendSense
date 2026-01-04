@@ -33,6 +33,7 @@ router.post("/register", async (req, res) => {
             httpOnly: true,
             sameSite: 'none', 
             secure: true,      
+            path: '/',
             maxAge: 24 * 60 * 60 * 1000
         }
         console.log("cookie sent")
@@ -78,6 +79,7 @@ router.post("/login",async(req,res)=>{
             httpOnly: true,
             sameSite: 'none', 
             secure: true,      
+            path: '/',
             maxAge: 24 * 60 * 60 * 1000
         }
         // console.log("user logged in successfully via login")
