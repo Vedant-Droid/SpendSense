@@ -27,7 +27,7 @@ const COLORS = [
   "#fc5c65",
   "#e61c70ff",
 ];
-
+const baseUrl = import.meta.env.VITE_BASE_URL
 export default function Dashboard() {
 
   const [title, setTitle] = useState("");
@@ -52,7 +52,7 @@ export default function Dashboard() {
     const newExpense = { title, amount, category };
 
     try {
-      const response = await fetch("/user/addExpense", {
+      const response = await fetch(`${baseUrl}/user/addExpense`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -85,7 +85,7 @@ export default function Dashboard() {
 
   const fetchAverageSpent = async () => {
     try {
-      const res = await fetch("/user/avgDailySpent", {
+      const res = await fetch(`${baseUrl}/user/avgDailySpent`, {
         method: "GET",
         credentials: "include",
       });
@@ -98,7 +98,7 @@ export default function Dashboard() {
 
   const fetchUserName = async () => {
     try {
-      const res = await fetch("/user/userInfo", {
+      const res = await fetch(`${baseUrl}/user/userInfo`, {
         method: "GET",
         credentials: "include",
       });
@@ -111,7 +111,7 @@ export default function Dashboard() {
 
   const fetchTotalSpent = async () => {
     try {
-      const res = await fetch("/user/totalSpent", {
+      const res = await fetch(`${baseUrl}/user/totalSpent`, {
         method: "GET",
         credentials: "include",
       });
@@ -124,7 +124,7 @@ export default function Dashboard() {
 
   const fetchCategorySummary = async () => {
     try {
-      const res = await fetch("/user/categorySummary", {
+      const res = await fetch(`${baseUrl}/user/categorySummary`, {
         method: "GET",
         credentials: "include",
       });
@@ -137,7 +137,7 @@ export default function Dashboard() {
 
   const fetchExpenses = async () => {
     try {
-      const response = await fetch("/user/recentLogs");
+      const response = await fetch(`${baseUrl}/user/recentLogs`);
       if (!response.ok) {
         throw new Error("Failed to fetch expenses");
       }
@@ -151,7 +151,7 @@ export default function Dashboard() {
   const fetchInsight = async () => {
     setInsight("Loading Hehehe....")
     try {
-      const res = await fetch('/user/insights', {
+      const res = await fetch(`${baseUrl}/user/insights`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -3,6 +3,8 @@ import {useNavigate} from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar.jsx';
 import './Profile.css';
 
+const baseUrl = import.meta.env.VITE_BASE_URL
+
 function Profile({setIsLoggedIn}){
 
   const [userName, setUserName] = useState('');
@@ -19,7 +21,7 @@ function Profile({setIsLoggedIn}){
 
   const handleLogout = async () => {
     try {
-      const response = await fetch('/user/logout', {
+      const response = await fetch(`${baseUrl}/user/logout`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -41,7 +43,7 @@ function Profile({setIsLoggedIn}){
   const getUserInfo=async()=>{
 
     try {
-      const response=await fetch("/user/userInfoProfile",{
+      const response=await fetch(`${baseUrl}/user/userInfoProfile`,{
         method:"GET",
         credentials:"include",
         headers:{
@@ -68,7 +70,7 @@ function Profile({setIsLoggedIn}){
   const handleUpdateUsername=async()=>{
     setShowUsernameModal(false)
     try {
-      const response = await fetch("/user/updateUsername",{
+      const response = await fetch(`${baseUrl}/user/updateUsername`,{
         method:"PUT",
         credentials:"include",
         headers: {"Content-Type": "application/json"},
@@ -89,7 +91,7 @@ function Profile({setIsLoggedIn}){
   const handleUpdatePassword=async()=>{
     setShowPasswordModal(false)
     try {
-      const response=await fetch("/user/updatePassword",{
+      const response=await fetch(`${baseUrl}/user/updatePassword`,{
         method:"PUT",
         credentials:"include",
         body:JSON.stringify({oldPassword,newPassword}),

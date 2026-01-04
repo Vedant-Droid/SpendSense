@@ -6,13 +6,15 @@ import Profile from '../pages/Profile/Profile.jsx';
 import Dashboard from '../pages/Dashboard/Dashboard.jsx';
 import { useNavigate } from 'react-router-dom';
 
+const baseUrl = import.meta.env.VITE_BASE_URL
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
   const Navigate=useNavigate()
   useEffect(() => {
     const checkCookie = async () => {
       try {
-        const res = await fetch('/user/verify', {
+        const res = await fetch(`${baseUrl}/user/verify`, {
           method: 'GET',
           credentials: 'include',
         });

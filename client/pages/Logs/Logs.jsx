@@ -3,6 +3,8 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "rec
 import Navbar from '../../components/Navbar/Navbar';
 import './Logs.css';
 
+const baseUrl = import.meta.env.VITE_BASE_URL
+
 export default function Logs() {
   const [expenses, setExpenses] = useState([]);
   const [totalSpent, setTotalSpent] = useState(0);
@@ -29,7 +31,7 @@ export default function Logs() {
 
   const fetchLogs = async () => {
     try {
-      const response = await fetch("/user/logs", { method: "GET", credentials: "include" });
+      const response = await fetch(`${baseUrl}/user/logs`, { method: "GET", credentials: "include" });
       const data = await response.json();
       if (response.ok) {
         setExpenses(data);
@@ -44,7 +46,7 @@ export default function Logs() {
   const handleDelete = async (id) => {
     if(showModal) return
     try {
-      const response = await fetch(`/user/deleteExpense/${id}`, {
+      const response = await fetch(`${baseUrl}/user/deleteExpense/${id}`, {
         method: "DELETE",
         credentials: "include"
       });
@@ -60,7 +62,7 @@ export default function Logs() {
   };
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`/user/editExpense/${editId}`, {
+      const response = await fetch(`${baseUrl}/user/editExpense/${editId}`, {
         method: "PUT",
         credentials: "include",
         headers: {
@@ -87,7 +89,7 @@ export default function Logs() {
 
   const fetchTotalSpent = async () => {
     try {
-      const res = await fetch("/user/totalSpent", {
+      const res = await fetch(`${baseUrl}/user/totalSpent`, {
         method: "GET",
         credentials: "include",
       });
@@ -100,7 +102,7 @@ export default function Logs() {
 
   const fetchTrendChartData = async () => {
     try {
-      const response = await fetch('/user/dailySummary', {
+      const response = await fetch(`${baseUrl}/user/dailySummary`, {
         method: "GET",
         credentials: "include"
       });

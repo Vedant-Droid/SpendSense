@@ -12,27 +12,31 @@ app.use(express.json())
 app.use(cookieParser());
 dotenv.config();
 
-const port=process.env.port || 5003
-app.use(cors({ origin: `http://localhost:${process.env.frontEndPort}`, credentials: true }));
+const PORT = process.env.port || 5003;
 
-const startServer=async()=>{
+const allowedOrigin = process.env.FRONTEND_URL || `http://localhost:${process.env.frontEndPort || 5173}`;
+
+app.use(cors({ 
+  origin: allowedOrigin, 
+  credentials: true 
+}));
+
+const startServer = async () => {
   try {
     await connectToMongoServer();
-    app.listen(port,()=>{
-      console.log(`Server started on http://localhost:${port}`);
+    app.listen(PORT, () => {
+
+      console.log(`Server is running on port ${PORT}`);
+      console.log(`Allowing requests from: ${allowedOrigin}`);
     });
   } catch (error) {
     console.error('Failed to connect to MongoDB:', error);
     process.exit(1);
   }
 };
- 
 
-app.use('/auth',authRoutes)
-app.use('/user',verifyToken,userRoutes)
+// Routes
+app.use('/auth', authRoutes);
+app.use('/user', verifyToken, userRoutes);
 
 startServer();
-
-
-
-
