@@ -8,6 +8,8 @@ function Login({setIsLoggedIn}){
   const [email,setEmail]=useState("");
   const [password,setPassword]=useState("");
   const [hasAccount,setHasAccount]=useState(true)
+  // --- ADDED: Loading state ---
+  const [loading, setLoading] = useState(false);
   
   const Navigate=useNavigate()
 
@@ -23,6 +25,8 @@ function Login({setIsLoggedIn}){
   
   };
   const Authenticate=async(submittedEmail,submittedPassword)=>{
+    // --- ADDED: Start loading ---
+    setLoading(true);
     try {
       let endpoint=hasAccount?"/auth/login":"/auth/register"
       
@@ -45,14 +49,25 @@ function Login({setIsLoggedIn}){
         throw new Error("Authentication failed");
       }
 
-      
     }catch (error){
       console.error("Something went wrong while Authentication",error) 
+    } finally {
+      // --- ADDED: Stop loading regardless of outcome ---
+      setLoading(false);
     }
   }
 
   return(
     <div id="login-regis-page">
+      {/* --- ADDED: Loading Popup --- */}
+      {loading && (
+        <div className="loading-popup">
+          <div className="loader-content">
+            <p>Processing... Please wait.</p>
+          </div>
+        </div>
+      )}
+
       <div id="login-regis-section">
         
         <h1 id="login-regis-text">{hasAccount?"Log-In!":"Register!"}</h1>
@@ -68,17 +83,17 @@ function Login({setIsLoggedIn}){
           placeholder="Password"
           onChange={(e)=>setPassword(e.target.value)}/>
         
-        <button id="submit-btn"onClick={handleSubmit}>{hasAccount?"Login":"Create New Account"}</button>
-        <button id="toggle-btn"onClick={()=>setHasAccount(!hasAccount)}>{hasAccount?"I don't have an Account":"I have an Account"}</button>
+        {/* --- ADDED: disabled attribute to prevent double-clicks --- */}
+        <button id="submit-btn" onClick={handleSubmit} disabled={loading}>
+          {loading ? "Loading..." : (hasAccount ? "Login" : "Create New Account")}
+        </button>
+        
+        <button id="toggle-btn" onClick={()=>setHasAccount(!hasAccount)} disabled={loading}>
+          {hasAccount?"I don't have an Account":"I have an Account"}
+        </button>
       
       </div>
     </div>
-
   )
 }
 export default Login;
-
-  
-
-
-  
