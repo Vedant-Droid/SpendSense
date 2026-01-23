@@ -22,7 +22,7 @@ function Login({setIsLoggedIn}){
     console.log('Submitted Password:', submittedPassword);
 
     await Authenticate(submittedEmail,submittedPassword)
-  
+    
   };
   const Authenticate=async(submittedEmail,submittedPassword)=>{
     // --- ADDED: Start loading ---

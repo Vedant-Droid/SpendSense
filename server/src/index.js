@@ -13,7 +13,7 @@ app.use(express.json())
 app.use(cookieParser());
 dotenv.config();
 
-const PORT = process.env.port || 5003;
+const PORT = process.env.port || 5000;
 
 const allowedOrigin = process.env.FRONTEND_URL || `http://localhost:${process.env.frontEndPort || 5173}`;
 
